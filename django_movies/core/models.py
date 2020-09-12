@@ -24,6 +24,7 @@ class Genre(models.Model):
     def __str__(self):
         return self.name
 
+
 class Director(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=70)
@@ -32,6 +33,17 @@ class Director(models.Model):
         unique_together = ('name', 'surname')
     def __str__(self):
         return f'{self.name} {self.surname}'
+
+
+class Country(models.Model):
+    country = models.CharField(max_length=40, unique=True, null=True)
+
+    class Meta:
+        ordering = ['country']
+
+    def __str__(self):
+        return self.country
+
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
@@ -44,9 +56,10 @@ class Movie(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     genre = models.ForeignKey(Genre, null=True, on_delete=models.SET_NULL)
     director = models.ForeignKey(Director, null=True, on_delete=models.SET_NULL)
+    countries = models.ManyToManyField(Country, related_name='movies')
 
     class Meta:
-        unique_together = ('title', 'released', 'director')
+        unique_together = ('title', 'released')
 
     def __str__(self):
         return f"{self.title} from {self.released}"
