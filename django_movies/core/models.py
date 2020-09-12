@@ -1,13 +1,13 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from model_utils import Choices
 
 # Create your models here.
-AGE_CHOICES = (
-    (7, 'Children'),
-    (12, 'Young'),
-    (18, 'Adult'),
-    (50, 'Retired')
-)
+AGE_CHOICES = Choices(
+    (0, 'kids', 'kids'),
+    (1, 'teens', 'teens'),
+    (2, 'adults', 'adults'),
+    )
 # class AgeLimit(models.IntegerChoices):
 #     Adult = 18
 #     Young = 12
