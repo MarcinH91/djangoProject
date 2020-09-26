@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+  <form method="post">
+      {% csrf_token %}
+      <p>
+          Are you sure you want to delete movie "{{ object.title }}" from the database?
+      </p>
+      <input type="submit" value="Yes" class="btn btn-danger">
+      <a class="btn btn-secondary" href="http://localhost:8000/" role="button">No</a>
+
+
+      </label>
+
+  </form>
+{% endblock %}

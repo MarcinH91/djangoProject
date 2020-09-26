@@ -21,6 +21,7 @@ class Genre(models.Model):
     name = models.CharField(max_length=20, unique=True)
     age_limit = models.IntegerField(choices=AGE_CHOICES, null=True, blank=True)
 
+
     def __str__(self):
         return self.name
 
