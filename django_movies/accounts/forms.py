@@ -18,7 +18,7 @@ class SubmittableForm(Form):
 
 class SignUpForm(SubmittableForm, UserCreationForm):
     shoes = CharField(
-        label='Tell me about your shoes size.',
+        label='Tell me your shoes size. (for ex. 40)',
         widget=Textarea,
         min_length=1,
     )

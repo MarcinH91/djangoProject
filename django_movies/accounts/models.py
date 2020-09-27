@@ -5,4 +5,4 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Profile(Model):
     user = OneToOneField(User, on_delete=CASCADE)
-    shoes = CharField(max_length=2, validators=[MaxValueValidator(1), MinValueValidator(50)])
+    shoes = CharField(max_length=2)
