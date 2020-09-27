@@ -6,7 +6,7 @@ from django.contrib.auth.forms import (
 from django.db.transaction import atomic
 from django.forms import CharField, Form, Textarea
 
-# from accounts.models import Profile
+from accounts.models import Profile
 
 
 class SubmittableForm(Form):
@@ -17,8 +17,20 @@ class SubmittableForm(Form):
 
 
 class SignUpForm(SubmittableForm, UserCreationForm):
+    shoes = CharField(
+        label='Tell me about your shoes size.',
+        widget=Textarea,
+        min_length=1,
+    )
     class Meta(UserCreationForm.Meta):
         fields = ['username', 'first_name']
+
+    def save(self, commit=True, *args, **kwargs):
+        user = super().save(commit)
+        shoes = self.cleaned_data['shoes']
+        profile = Profile(shoes=shoes, user=user)
+        profile.save()
+        return user
 
 class SubmittableAuthenticationForm(SubmittableForm, AuthenticationForm):
     pass
