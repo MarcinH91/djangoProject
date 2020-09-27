@@ -58,6 +58,7 @@ class Movie(models.Model):
     genre = models.ForeignKey(Genre, null=True, on_delete=models.SET_NULL)
     director = models.ForeignKey(Director, null=True, on_delete=models.SET_NULL)
     countries = models.ManyToManyField(Country, related_name='movies')
+    # user = models.ForeignKey
 
     class Meta:
         unique_together = ('title', 'released')

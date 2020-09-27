@@ -15,6 +15,11 @@ class SubmittableForm(Form):
         self.helper = FormHelper()
         self.helper.layout = Layout(*self.fields, Submit('submit', 'Submit'))
 
+
+class SignUpForm(SubmittableForm, UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        fields = ['username', 'first_name']
+
 class SubmittableAuthenticationForm(SubmittableForm, AuthenticationForm):
     pass
 
